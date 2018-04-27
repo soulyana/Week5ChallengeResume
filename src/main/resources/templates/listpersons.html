@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="/fragments/navbase::navhead">
+
+</head>
+<body>
+<nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
+<div th:each="eachPerson:${persons}">
+    <h2 th:text="${eachPerson.firstName}"></h2>
+    <h2 th:text="${eachPerson.lastName}"></h2>
+    <h2 th:text="${eachPerson.email}"></h2>
+    <h2 th:text="${eachPerson.phoneNum}"></h2>
+    <!--display image of artiste-->
+    <!--<img class="rounded-circle" th:src="${eachPerson.image}== ''? '/images/defaultArtiste.jpg' : ${eachArtiste.image}"-->
+         <!--alt="Artiste" height="100px" width="100px"/>-->
+    <div th:each="eachEducation:${eachPerson.educations}">
+        <p th:text="${eachEducation.degree}"></p>
+        <p th:text="${eachEducation.institution}"></p>
+        <form action="/updateeducation" method="post">
+            <input type="hidden" name="id" th:value="${eachEducation.id}">
+            <p><button th:text="'Edit Education'" type="submit"></button></p>
+        </form>
+    </div>
+
+    <div th:each="eachSkill:${eachPerson.skills}">
+        <p th:text="${eachSkill.skill}"></p>
+        <p th:text="${eachSkill.proficiency}"></p>
+        <form action="/updateskill" method="post">
+            <input type="hidden" name="id" th:value="${eachSkill.id}">
+            <p><button th:text="'Edit Skill'" type="submit"></button></p>
+        </form>
+    </div>
+
+    <div th:each="eachWorkExp:${eachPerson.workExps}">
+        <p th:text="${eachWorkExp.jobTitle}"></p>
+        <p th:text="${eachWorkExp.organization}"></p>
+        <form action="/updateworkexp" method="post">
+            <input type="hidden" name="id" th:value="${eachWorkExp.id}">
+            <p><button th:text="'Edit Work Experience'" type="submit"></button></p>
+        </form>
+    </div>
+
+    <form action="/updateperson" method="post">
+        <input type="hidden" name="id" th:value="${eachPerson.id}">
+        <p><button th:text="'Edit Person'" type="submit"></button></p>
+    </form>
+</div>
+<span th:replace="/fragments/navbase::scripts"></span>
+</body>
+</html>
