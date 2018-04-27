@@ -1,6 +1,8 @@
 package me.soulyana.demo.Models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,9 +12,19 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
+    @Size(min=2)
     private String firstName;
+
+    @NotNull
+    @Size(min=2)
     private String lastName;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private String phoneNum;
 
     @OneToMany(mappedBy = "person")

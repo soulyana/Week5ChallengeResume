@@ -1,13 +1,21 @@
 package me.soulyana.demo.Models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class WorkExp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
+    @Size(min=2)
     private String jobTitle;
+
+    @NotNull
+    @Size(min=2)
     private String organization;
 
     @ManyToOne
