@@ -27,6 +27,8 @@ public class Person {
     @NotNull
     private String phoneNum;
 
+    private String image;
+
     @OneToMany(mappedBy = "person")
     public Set<WorkExp> workExps;
 
@@ -104,5 +106,13 @@ public class Person {
 
     public void setSkills(Set<Skill> skills) {
         this.skills = skills;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -1,50 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head th:replace="/fragments/navbase::navhead">
+<head th:replace="/fragments/navbase::navheadGrid">
 
 </head>
 <body>
 <nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
-<div th:each="eachPerson:${persons}">
-    <h2 th:text="${eachPerson.firstName}"></h2>
-    <h2 th:text="${eachPerson.lastName}"></h2>
-    <h2 th:text="${eachPerson.email}"></h2>
-    <h2 th:text="${eachPerson.phoneNum}"></h2>
-    <!--display image of artiste-->
-    <!--<img class="rounded-circle" th:src="${eachPerson.image}== ''? '/images/defaultArtiste.jpg' : ${eachArtiste.image}"-->
-         <!--alt="Artiste" height="100px" width="100px"/>-->
-    <div th:each="eachEducation:${eachPerson.educations}">
-        <p th:text="${eachEducation.degree}"></p>
-        <p th:text="${eachEducation.institution}"></p>
-        <form action="/updateeducation" method="post">
-            <input type="hidden" name="id" th:value="${eachEducation.id}">
-            <p><button th:text="'Edit Education'" type="submit"></button></p>
-        </form>
-    </div>
 
-    <div th:each="eachSkill:${eachPerson.skills}">
-        <p th:text="${eachSkill.skill}"></p>
-        <p th:text="${eachSkill.proficiency}"></p>
-        <form action="/updateskill" method="post">
-            <input type="hidden" name="id" th:value="${eachSkill.id}">
-            <p><button th:text="'Edit Skill'" type="submit"></button></p>
-        </form>
-    </div>
+<div class="container">
+    <!-- Introduction Row -->
+    <h1 class="my-4">About Us</h1>
+    <p>Below is our collection of candidates and a pop up display of their resume</p>
 
-    <div th:each="eachWorkExp:${eachPerson.workExps}">
-        <p th:text="${eachWorkExp.jobTitle}"></p>
-        <p th:text="${eachWorkExp.organization}"></p>
-        <form action="/updateworkexp" method="post">
-            <input type="hidden" name="id" th:value="${eachWorkExp.id}">
-            <p><button th:text="'Edit Work Experience'" type="submit"></button></p>
-        </form>
-    </div>
+    <!-- Team Members Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="my-4">Our Team</h2>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4" th:each="eachPerson:${persons}">
+            <img class="rounded-circle img-fluid d-block mx-auto" th:src="${eachPerson.image}== ''?
+            '/images/stockempSQ.jpg' : ${eachPerson.image}" alt="Person" />
+            <h3 th:text="${eachPerson.firstName}"></h3>
+            <h3 th:text="${eachPerson.lastName}"></h3>
+            <h5 th:text="${eachPerson.email}"></h5>
+            <h5 th:text="${eachPerson.phoneNum}"></h5>
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div th:each="eachEducation:${eachPerson.educations}">
+                            <h5 class="card-title">Degree: </h5><p th:text="${eachEducation.degree}"></p>
+                            <h5 class="card-title">Institution: </h5><p th:text="${eachEducation.institution}"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div th:each="eachSkill:${eachPerson.skills}">
+                            <h5 class="card-title">Skill: </h5><p th:text="${eachSkill.skill}"></p>
+                            <h5 class="card-title">Proficiency: </h5><p th:text="${eachSkill.proficiency}"></p>
+                            <!--<form action="/updateskill" method="post">-->
+                            <!--<input type="hidden" name="id" th:value="${eachSkill.id}">-->
+                            <!--<p><button th:text="'Edit Skill'" type="submit"></button></p>-->
+                            <!--</form>-->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div th:each="eachWorkExp:${eachPerson.workExps}">
+                            <h5 class="card-title">Job Title: </h5><p th:text="${eachWorkExp.jobTitle}"></p>
+                            <h5 class="card-title">Organization: </h5><p th:text="${eachWorkExp.organization}"></p>
+                            <!--<form action="/updateworkexp" method="post">-->
+                            <!--<input type="hidden" name="id" th:value="${eachWorkExp.id}">-->
+                            <!--<p><button th:text="'Edit Work Experience'" type="submit"></button></p>-->
+                            <!--</form>-->
+                        </div>
+                    </li>
+                </ul>
+                <!--<div class="card-body">-->
+                <!--<a href="#" class="card-link">Card link</a>-->
+                <!--<a href="#" class="card-link">Another link</a>-->
+                <!--</div>-->
+            </div>
+        </div>
 
-    <form action="/updateperson" method="post">
-        <input type="hidden" name="id" th:value="${eachPerson.id}">
-        <p><button th:text="'Edit Person'" type="submit"></button></p>
-    </form>
+    </div>
 </div>
-<span th:replace="/fragments/navbase::scripts"></span>
+
+<!--display image of artiste-->
+<!--<img class="rounded-circle" th:src="${eachPerson.image}== ''? '/images/defaultArtiste.jpg' : ${eachArtiste.image}"-->
+<!--alt="Artiste" height="100px" width="100px"/>-->
+<!--<div th:each="eachEducation:${eachPerson.educations}">-->
+<!--<p th:text="${eachEducation.degree}"></p>-->
+<!--<p th:text="${eachEducation.institution}"></p>-->
+<!--<form action="/updateeducation" method="post">-->
+<!--<input type="hidden" name="id" th:value="${eachEducation.id}">-->
+<!--<p><button th:text="'Edit Education'" type="submit"></button></p>-->
+<!--</form>-->
+<!--</div>-->
+
+
+
+
+
+<!--<form action="/updateperson" method="post">-->
+<!--<input type="hidden" name="id" th:value="${eachPerson.id}">-->
+<!--<p><button th:text="'Edit Person'" type="submit"></button></p>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!-- /.container -->
+<span th:replace="/fragments/navbase::scriptsGrid"></span>
 </body>
 </html>

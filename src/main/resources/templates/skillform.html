@@ -5,6 +5,7 @@
 </head>
 <body>
 <nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
+<div class="container">
 <p>Skill Form</p>
 <form action="/saveskill" th:object="${aSkill}" method="post">
     <input type="hidden" th:field="*{id}" />
@@ -18,8 +19,11 @@
     <div class="form-group">
         <label class="control-label col-sm-4">Proficiency:</label>
         <div class="col-sm-4">
-            <input type="text" th:field="*{proficiency}" />
-            <span th:if="${#fields.hasErrors('proficiency')}" th:errors="*{proficiency}"></span><br />
+            <select th:field="*{proficiency}">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
         </div>
     </div>
     <select th:field="*{person}">
@@ -32,6 +36,7 @@
         </div>
     </div>
 </form>
+</div>
 <span th:replace="/fragments/navbase::scripts"></span>
 </body>
 </html>

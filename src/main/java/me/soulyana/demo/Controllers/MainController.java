@@ -40,6 +40,11 @@ public class MainController {
         return "homepage";
     }
 
+    @RequestMapping("/index")
+    public String showIndex() {
+        return "index";
+    }
+
     @RequestMapping("/addperson")
     public String addPersonForm(Model model) {
         model.addAttribute("menuoption", "addperson");
